@@ -1,6 +1,7 @@
 import { Transform, TransformFnParams } from "class-transformer";
 import { IsNotEmpty } from "class-validator";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Produto } from "../../produto/entities/produto.entity";
 
 
 @Entity({name: "tb_categorias"})
@@ -21,5 +22,8 @@ export class Categoria {
 
     @UpdateDateColumn()
     data: Date;
+
+    @OneToMany(() => Produto, (produto) => produto.categoria)
+    produto: Produto[];
 
 }
